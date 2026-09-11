@@ -3,27 +3,30 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 
-// Placeholder executive data - would be replaced with real data from repository
 const executives = [
   {
-    name: "Chapter President",
+    name: "President",
     position: "President",
-    image: null, // Would use real image from repository
+    image: "/images/president.jpg",
+    alt: "NACOS Nile President",
   },
   {
     name: "Vice President",
     position: "Vice President",
-    image: null,
+    image: "/images/vicepresident.jpg",
+    alt: "NACOS Nile Vice President",
   },
   {
     name: "Technical Lead",
     position: "Technical Lead",
-    image: null,
+    image: "/images/technicallead.jpg",
+    alt: "NACOS Nile Technical Lead",
   },
   {
-    name: "Events Coordinator",
-    position: "Events Coordinator",
-    image: null,
+    name: "Event Coordinator",
+    position: "Event Coordinator",
+    image: "/images/eventcoordinator.jpg",
+    alt: "NACOS Nile Event Coordinator",
   },
 ];
 
@@ -69,8 +72,8 @@ export default function NacosExecutives() {
           </motion.div>
 
           <h2 className="text-5xl font-extrabold tracking-tight text-[#F5F7FA] sm:text-6xl lg:text-7xl leading-tight">
-            Meet Our{" "}
-            <span className="text-[#4FD1C5]">Executives</span>
+            NACOS Nile{" "}
+            <span className="text-[#4FD1C5]">Leadership</span>
           </h2>
 
           <p className="mt-8 text-xl text-[#8B96A5] leading-relaxed">
@@ -78,7 +81,7 @@ export default function NacosExecutives() {
           </p>
         </motion.div>
 
-        {/* Premium Executives Grid */}
+        {/* Premium leadership grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {executives.map((executive, index) => (
             <motion.div
@@ -90,12 +93,15 @@ export default function NacosExecutives() {
               transition={{ duration: 0.7, delay: index * 0.1, ease: "easeOut" }}
             >
               <div className="relative h-full rounded-2xl border border-[#4FD1C5]/10 bg-[#0D1F3D]/40 overflow-hidden transition-all duration-500 hover:border-[#4FD1C5]/30 hover:bg-[#0D1F3D]/60 hover:shadow-xl hover:shadow-[#4FD1C5]/10 hover:-translate-y-1">
-                {/* Premium image placeholder */}
-                <div className="aspect-[3/4] bg-gradient-to-br from-[#1B2632] to-[#0A1628] flex items-center justify-center relative overflow-hidden">
-                  <div className="text-7xl opacity-15">👤</div>
-                  
-                  {/* Subtle overlay on hover */}
-                  <div className="absolute inset-0 bg-[#4FD1C5]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative aspect-3/4 overflow-hidden bg-[#0A1628]">
+                  <Image
+                    src={executive.image}
+                    alt={executive.alt}
+                    fill
+                    sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw"
+                    className="object-cover object-center transition duration-700 ease-out group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-[#05070A]/70 via-transparent to-transparent" />
                 </div>
 
                 {/* Info */}
@@ -121,7 +127,6 @@ export default function NacosExecutives() {
           ))}
         </div>
 
-        {/* Note about real photos */}
         <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0 }}
@@ -130,7 +135,7 @@ export default function NacosExecutives() {
           transition={{ duration: 0.7, delay: 0.5 }}
         >
           <p className="text-sm text-[#5E6977] font-mono">
-            * Executive photos and names will be updated with actual chapter leadership
+            Learn from the people building the NACOS Nile community.
           </p>
         </motion.div>
       </div>

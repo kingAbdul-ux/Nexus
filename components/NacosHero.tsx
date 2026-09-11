@@ -3,6 +3,17 @@
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "motion/react";
 import { useState, useRef } from "react";
+import Image from "next/image";
+
+const particles = Array.from({ length: 15 }, (_, index) => ({
+  size: (index % 3) + 1,
+  left: (index * 37) % 100,
+  top: (index * 61) % 100,
+  tone: index % 2 === 0 ? "rgba(79, 209, 197, 0.3)" : "rgba(56, 178, 172, 0.2)",
+  opacity: 0.08 + (index % 4) * 0.04,
+  duration: 3 + (index % 4),
+  delay: (index % 3) * 0.8,
+}));
 
 export default function NacosHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,7 +32,6 @@ export default function NacosHero() {
   // Parallax effects for background elements
   const bgGradient1Y = useTransform(smoothProgress, [0, 1], [0, -30]);
   const bgGradient2Y = useTransform(smoothProgress, [0, 1], [0, 20]);
-  const particlesY = useTransform(smoothProgress, [0, 1], [0, -15]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
@@ -39,7 +49,7 @@ export default function NacosHero() {
         transition: {
           duration: 4,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
         },
       };
 
@@ -51,7 +61,7 @@ export default function NacosHero() {
         transition: {
           duration: 3,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
         },
       };
 
@@ -87,27 +97,27 @@ export default function NacosHero() {
         {/* Refined animated particles */}
         {!prefersReducedMotion && (
           <>
-            {[...Array(15)].map((_, i) => (
+            {particles.map((particle, i) => (
               <motion.div
                 key={i}
                 className="absolute rounded-full"
                 style={{
-                  width: Math.random() * 3 + 1,
-                  height: Math.random() * 3 + 1,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  background: Math.random() > 0.5 ? 'rgba(79, 209, 197, 0.3)' : 'rgba(56, 178, 172, 0.2)',
-                  opacity: Math.random() * 0.2 + 0.05,
+                  width: particle.size,
+                  height: particle.size,
+                  left: `${particle.left}%`,
+                  top: `${particle.top}%`,
+                  background: particle.tone,
+                  opacity: particle.opacity,
                 }}
                 animate={{
                   y: [0, -15, 0],
                   opacity: [0.05, 0.25, 0.05],
                 }}
                 transition={{
-                  duration: Math.random() * 4 + 3,
+                  duration: particle.duration,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: Math.random() * 3,
+                  delay: particle.delay,
                 }}
               />
             ))}
@@ -118,12 +128,12 @@ export default function NacosHero() {
         {!prefersReducedMotion && (
           <>
             <motion.div
-              className="absolute top-1/4 left-1/4 w-24 h-px bg-gradient-to-r from-transparent via-[#4FD1C5]/20 to-transparent"
+              className="absolute top-1/4 left-1/4 w-24 h-px bg-linear-to-r from-transparent via-[#4FD1C5]/20 to-transparent"
               animate={floatingAnimation}
               transition={{ delay: 0.5, duration: 5 }}
             />
             <motion.div
-              className="absolute bottom-1/3 right-1/3 w-32 h-px bg-gradient-to-r from-transparent via-[#38B2AC]/15 to-transparent"
+              className="absolute bottom-1/3 right-1/3 w-32 h-px bg-linear-to-r from-transparent via-[#38B2AC]/15 to-transparent"
               animate={floatingAnimation}
               transition={{ delay: 1, duration: 6 }}
             />
@@ -139,9 +149,7 @@ export default function NacosHero() {
             background:
               "radial-gradient(ellipse, rgba(79, 209, 197, 0.06) 0%, transparent 70%)",
             filter: "blur(100px)",
-          }}
-          animate={prefersReducedMotion ? {} : {
-            y: bgGradient1Y,
+            ...(prefersReducedMotion ? {} : { y: bgGradient1Y }),
           }}
         />
         <motion.div
@@ -152,9 +160,7 @@ export default function NacosHero() {
             background:
               "radial-gradient(ellipse, rgba(56, 178, 172, 0.04) 0%, transparent 70%)",
             filter: "blur(80px)",
-          }}
-          animate={prefersReducedMotion ? {} : {
-            y: bgGradient2Y,
+            ...(prefersReducedMotion ? {} : { y: bgGradient2Y }),
           }}
         />
 
@@ -229,8 +235,8 @@ export default function NacosHero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, ease: "easeOut", delay: 0.5 }}
                 >
-                  "Where ideas become{" "}
-                  <span className="text-[#4FD1C5]">innovation</span>."
+                  Where ideas become{" "}
+                  <span className="text-[#4FD1C5]">innovation</span>.
                 </motion.p>
                 <motion.p
                   className="text-2xl font-medium text-[#8B96A5] sm:text-3xl lg:text-4xl leading-tight"
@@ -238,7 +244,7 @@ export default function NacosHero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, ease: "easeOut", delay: 0.6 }}
                 >
-                  "Learn the skills. Build the future."
+                  Learn the skills. Build the future.
                 </motion.p>
               </motion.div>
             </div>
@@ -266,10 +272,10 @@ export default function NacosHero() {
                 transition={{ duration: 0.25, ease: "easeOut" }}
               >
                 <Link
-                  href="#about"
-                  className="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-[#4FD1C5] to-[#38B2AC] px-8 py-4 text-sm font-bold text-[#0A1628] transition-all shadow-lg shadow-[#4FD1C5]/20 hover:shadow-xl hover:shadow-[#4FD1C5]/30"
+                  href="#join"
+                  className="group relative inline-flex items-center gap-3 rounded-xl bg-linear-to-r from-[#4FD1C5] to-[#38B2AC] px-8 py-4 text-sm font-bold text-[#0A1628] transition-all shadow-lg shadow-[#4FD1C5]/20 hover:shadow-xl hover:shadow-[#4FD1C5]/30"
                 >
-                  <span>Explore NACOS Nile</span>
+                  <span>Join Community</span>
                   <motion.span
                     className="transition-transform duration-200"
                     whileHover={{ x: 6 }}
@@ -285,10 +291,10 @@ export default function NacosHero() {
                 transition={{ duration: 0.25, ease: "easeOut" }}
               >
                 <Link
-                  href="#join"
+                  href="#disciplines"
                   className="group inline-flex items-center gap-3 rounded-xl border border-[#4FD1C5]/30 bg-[#0A1628] px-8 py-4 text-sm font-bold text-[#4FD1C5] transition-all hover:bg-[rgba(79,209,197,0.1)] hover:border-[#4FD1C5]/50 hover:shadow-lg hover:shadow-[#4FD1C5]/10"
                 >
-                  <span>Join the Community</span>
+                  <span>Explore Programs</span>
                 </Link>
               </motion.div>
             </motion.div>
@@ -311,7 +317,7 @@ export default function NacosHero() {
           {/* RIGHT — PREMIUM VISUAL ELEMENT */}
           <div className="lg:col-span-5 relative flex items-center justify-center pt-6 lg:pt-0">
             <motion.div
-              className="relative w-full max-w-[480px] aspect-square flex items-center justify-center"
+              className="relative w-full max-w-120 aspect-square flex items-center justify-center"
               style={{
                 y: deviceY,
                 rotateX: deviceRotateX,
@@ -340,7 +346,13 @@ export default function NacosHero() {
                     className="text-center"
                     animate={prefersReducedMotion ? {} : floatingAnimation}
                   >
-                    <div className="text-7xl font-bold text-[#4FD1C5] mb-3 tracking-tight">N</div>
+                    <Image
+                      src="/images/logo.svg"
+                      alt="NACOS Nile logo"
+                      width={160}
+                      height={76}
+                      className="mx-auto mb-5 h-auto w-40"
+                    />
                     <div className="text-xs font-mono text-[#8B96A5] tracking-[0.2em] uppercase">NACOS</div>
                     <div className="text-[10px] font-mono text-[#5E6977] tracking-widest mt-1">NILE CHAPTER</div>
                   </motion.div>
@@ -417,7 +429,7 @@ export default function NacosHero() {
           SCROLL TO EXPLORE
         </motion.span>
         <motion.div 
-          className="h-6 w-px bg-gradient-to-b from-[#4FD1C5] to-transparent"
+          className="h-6 w-px bg-linear-to-b from-[#4FD1C5] to-transparent"
           animate={prefersReducedMotion ? {} : {
             scaleY: [1, 1.5, 1],
             opacity: [0.5, 1, 0.5],

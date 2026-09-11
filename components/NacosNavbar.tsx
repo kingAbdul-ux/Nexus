@@ -2,13 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll } from "motion/react";
+import Image from "next/image";
 
 const links = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Programs", href: "#programs" },
+  { label: "Disciplines", href: "#disciplines" },
+  { label: "Events", href: "#events" },
   { label: "Executives", href: "#executives" },
-  { label: "Join NACOS", href: "#join" },
+  { label: "Community", href: "#community" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function NacosNavbar() {
@@ -62,9 +65,16 @@ export default function NacosNavbar() {
           className="group flex items-center gap-3 transition-opacity"
           aria-label="NACOS Nile Home"
         >
-          {/* Logo Icon */}
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-[#4FD1C5]/20 bg-[#0D1F3D] transition-all duration-300 group-hover:border-[#4FD1C5]/40 group-hover:shadow-lg group-hover:shadow-[#4FD1C5]/10">
-            <span className="text-xl font-bold text-[#4FD1C5]">N</span>
+          {/* NACOS Nile logo from the local public assets */}
+          <div className="relative flex h-10 w-21 items-center justify-center rounded-xl border border-[#4FD1C5]/20 bg-[#0D1F3D] px-1 transition-all duration-300 group-hover:border-[#4FD1C5]/40 group-hover:shadow-lg group-hover:shadow-[#4FD1C5]/10">
+            <Image
+              src="/images/logo.svg"
+              alt="NACOS Nile logo"
+              width={80}
+              height={38}
+              priority
+              className="h-auto w-full"
+            />
           </div>
 
           <div className="flex flex-col">
@@ -102,6 +112,18 @@ export default function NacosNavbar() {
               </a>
             );
           })}
+        </div>
+
+        {/* Desktop CTA Button */}
+        <div className="hidden md:block">
+          <motion.a
+            href="#community"
+            whileHover={{ scale: 1.03, y: -1 }}
+            whileTap={{ scale: 0.97 }}
+            className="relative inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-[#4FD1C5] to-[#38B2AC] px-5 py-2.5 text-xs font-bold text-[#0A1628] transition-all shadow-lg shadow-[#4FD1C5]/20 hover:shadow-xl hover:shadow-[#4FD1C5]/30"
+          >
+            <span>Join Community</span>
+          </motion.a>
         </div>
 
         {/* Mobile Hamburger Toggle */}
@@ -172,6 +194,15 @@ export default function NacosNavbar() {
                   <span className="text-[#5E6977] group-hover:text-[#4FD1C5] transition-colors">→</span>
                 </a>
               ))}
+              <motion.a
+                href="#community"
+                onClick={() => setMobileMenuOpen(false)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="mt-4 relative inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-[#4FD1C5] to-[#38B2AC] px-4 py-3 text-xs font-bold text-[#0A1628] transition-all shadow-lg shadow-[#4FD1C5]/20"
+              >
+                <span>Join Community</span>
+              </motion.a>
             </div>
           </motion.div>
         )}
