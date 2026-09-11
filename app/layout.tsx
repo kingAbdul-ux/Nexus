@@ -13,26 +13,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NEXUS — Infrastructure for intelligent systems",
+  title: "NACOS Nile Chapter — Learn • Build • Grow",
   description:
-    "NEXUS pairs high-performance compute with a beautiful command layer for ambitious teams.",
+    "NACOS Nile Chapter is a student technology community focused on learning, building, collaboration, leadership, and innovation.",
   keywords: [
-    "NEXUS",
-    "Intelligent System",
-    "AI Infrastructure",
-    "Command Platform",
-    "Neural Engine",
-    "EUV Silicon",
-    "Unified Memory",
+    "NACOS",
+    "Nile Chapter",
+    "Technology Community",
+    "Student Organization",
+    "Learn Build Grow",
+    "Innovation",
+    "Leadership",
   ],
-  authors: [{ name: "NEXUS Intelligent Systems" }],
+  authors: [{ name: "NACOS Nile Chapter" }],
 };
 
 export const viewport: Viewport = {
-  themeColor: "#060814",
+  themeColor: "#0A1628",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -45,7 +46,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-[#060814] text-[#F7F8FF]">
+      <body className="min-h-full flex flex-col bg-[#0A1628] text-[#F7F8FF]">
         {children}
       </body>
     </html>

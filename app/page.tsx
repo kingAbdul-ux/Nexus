@@ -1,5 +1,5 @@
-import NexusExperience from "@/components/NexusExperience";
+import NacosPage from "@/components/NacosPage";
 
 export default function Home() {
-  return <NexusExperience />;
+  return <NacosPage />;
 }
