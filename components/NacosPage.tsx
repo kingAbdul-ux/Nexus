@@ -3,10 +3,11 @@
 import NacosNavbar from "./NacosNavbar";
 import NacosHero from "./NacosHero";
 import NacosAbout from "./NacosAbout";
-import NacosPrograms from "./NacosPrograms";
+import NacosDisciplines from "./NacosDisciplines";
+import NacosEvents from "./NacosEvents";
 import NacosWhyJoin from "./NacosWhyJoin";
 import NacosExecutives from "./NacosExecutives";
-import NacosHighlights from "./NacosHighlights";
+import NacosCommunity from "./NacosCommunity";
 import NacosJoinCTA from "./NacosJoinCTA";
 import NacosFooter from "./NacosFooter";
 
@@ -16,10 +17,11 @@ export default function NacosPage() {
       <NacosNavbar />
       <NacosHero />
       <NacosAbout />
-      <NacosPrograms />
+      <NacosDisciplines />
+      <NacosEvents />
       <NacosWhyJoin />
       <NacosExecutives />
-      <NacosHighlights />
+      <NacosCommunity />
       <NacosJoinCTA />
       <NacosFooter />
     </main>

@@ -123,8 +123,8 @@ export default function NacosJoinCTA() {
                 transition={{ duration: 0.25, ease: "easeOut" }}
               >
                 <Link
-                  href="#"
-                  className="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-[#4FD1C5] to-[#38B2AC] px-10 py-5 text-base font-bold text-[#0A1628] transition-all shadow-xl shadow-[#4FD1C5]/25 hover:shadow-2xl hover:shadow-[#4FD1C5]/35"
+                  href="#community"
+                  className="group relative inline-flex items-center gap-3 rounded-xl bg-linear-to-r from-[#4FD1C5] to-[#38B2AC] px-10 py-5 text-base font-bold text-[#0A1628] transition-all shadow-xl shadow-[#4FD1C5]/25 hover:shadow-2xl hover:shadow-[#4FD1C5]/35"
                 >
                   <span>Join NACOS Nile</span>
                   <span className="transition-transform duration-200 group-hover:translate-x-1">

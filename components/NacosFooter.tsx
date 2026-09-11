@@ -11,10 +11,10 @@ const hrefMap: Record<string, string> = {
   "Our Mission": "#about",
   "Chapter History": "#about",
   "Contact": "#join",
-  "Workshops": "#programs",
-  "Events": "#programs",
-  "Competitions": "#programs",
-  "Resources": "#programs",
+  "Workshops": "#events",
+  "Events": "#events",
+  "Competitions": "#events",
+  "Resources": "#events",
   "Members": "#executives",
   "Executives": "#executives",
   "Partners": "#programs",
@@ -23,7 +23,7 @@ const hrefMap: Record<string, string> = {
 
 export default function NacosFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-[#4FD1C5]/10 bg-[#05070A] px-6 pb-16 pt-24 lg:px-8">
+    <footer id="contact" className="relative overflow-hidden border-t border-[#4FD1C5]/10 bg-[#05070A] px-6 pb-16 pt-24 lg:px-8">
       {/* Premium Background Soft Ambient Light */}
       <div
         className="pointer-events-none absolute bottom-0 left-1/2 -z-10 -translate-x-1/2 rounded-full"
@@ -63,6 +63,17 @@ export default function NacosFooter() {
               A student technology community dedicated to empowering students with practical skills, real-world experience, and meaningful connections.
             </p>
 
+            {/* Chapter Address */}
+            <div className="mt-8 pt-6 border-t border-[#4FD1C5]/10">
+              <h4 className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-[#4FD1C5] mb-3">
+                Location
+              </h4>
+              <p className="text-sm text-[#8B96A5] leading-relaxed">
+                Nile University of Nigeria<br />
+                Abuja, FCT
+              </p>
+            </div>
+
             <div className="mt-8 inline-flex items-center gap-3 rounded-xl border border-[#4FD1C5]/20 bg-[rgba(79,209,197,0.06)] px-4 py-2">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4FD1C5] opacity-75" />
@@ -72,6 +83,10 @@ export default function NacosFooter() {
                 Community Active
               </span>
             </div>
+
+            <p className="mt-6 text-xs text-[#5E6977]">
+              Website crafted by the NACOS Nile creative and technical team.
+            </p>
           </div>
 
           {/* Premium Categorized Link Columns */}

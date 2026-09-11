@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 
 export default function NacosAbout() {
   return (
@@ -83,6 +84,27 @@ export default function NacosAbout() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Disciplines Preview */}
+            <motion.div
+              className="mt-16 pt-8 border-t border-[#4FD1C5]/10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            >
+              <h3 className="text-xl font-bold text-[#F5F7FA] mb-6">Our Computing Disciplines</h3>
+              <div className="flex flex-wrap gap-3">
+                {["Computer Science", "Software Engineering", "Cyber Security", "Information Technology", "Information Systems", "Data Science"].map((discipline, index) => (
+                  <span
+                    key={index}
+                    className="px-4 py-2 text-sm font-mono text-[#8B96A5] border border-[#4FD1C5]/20 rounded-full hover:border-[#4FD1C5]/40 hover:text-[#4FD1C5] transition-colors"
+                  >
+                    {discipline}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Right - Premium Visual */}
@@ -100,7 +122,13 @@ export default function NacosAbout() {
               {/* Inner content */}
               <div className="absolute inset-10 rounded-2xl border border-[#4FD1C5]/20 bg-[#0A1628]/60 backdrop-blur-2xl flex items-center justify-center">
                 <div className="text-center p-10">
-                  <div className="text-9xl font-bold text-[#4FD1C5]/15 mb-6">N</div>
+                  <Image
+                    src="/images/logo.svg"
+                    alt="NACOS Nile logo"
+                    width={180}
+                    height={86}
+                    className="mx-auto mb-8 h-auto w-44 opacity-90"
+                  />
                   <div className="text-sm font-mono text-[#8B96A5] tracking-[0.2em] uppercase">
                     Technology Community
                   </div>
